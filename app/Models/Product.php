@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\ProductIngredient $productIngredients
  *
  * @method static Builder|Product missing()
  * @method static Builder|Product newModelQuery()
@@ -33,7 +35,10 @@ class Product extends Model
         'name',
     ];
 
-    public function productIngredients()
+    /**
+     * @return HasMany
+     */
+    public function productIngredients(): HasMany
     {
         return $this->hasMany(ProductIngredient::class);
     }

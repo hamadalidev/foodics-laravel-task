@@ -16,7 +16,7 @@ class OrderItemObserver
     {
         $productIngredients = $orderItem->product->productIngredients;
         foreach ($productIngredients as $productIngredient) {
-            $productIngredientStock = $productIngredient->ingredient->ingredientStocks;
+            $productIngredientStock = $productIngredient->ingredient->ingredientStock;
             $productIngredientStock->remaining_quantity = $productIngredientStock->remaining_quantity - ($productIngredient->quantity * $orderItem->quantity);
             $productIngredientStock->save();
 

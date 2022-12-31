@@ -22,7 +22,16 @@ class ProductSeeder extends Seeder
                     ['name' => 'Beef', 'quantity' => 150],
                     ['name' => 'Cheese', 'quantity' => 30],
                     ['name' => 'Onion',  'quantity' => 20],
-                ]],
+                ],
+            ],
+            ['name' => 'Pizza',
+                'ingredients' => [
+                    ['name' => 'Cheese', 'quantity' => 250],
+                    ['name' => 'Onion',  'quantity' => 50],
+                    ['name' => 'Beef', 'quantity' => 250],
+                    ['name' => 'Flour', 'quantity' => 1000],
+                ],
+            ],
         ];
         foreach ($products as $productRow) {
             $product = Product::firstOrCreate(Arr::except($productRow, 'ingredients'));

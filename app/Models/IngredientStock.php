@@ -46,7 +46,6 @@ class IngredientStock extends Model
         'ingredient_id',
         'remaining_quantity',
         'total_quantity',
-        'notification_quantity',
         'notification_status',
     ];
 

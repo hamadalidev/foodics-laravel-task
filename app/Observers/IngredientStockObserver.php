@@ -17,7 +17,6 @@ class IngredientStockObserver
     {
         $ingredientStock->remaining_quantity = $ingredientStock->total_quantity;
         $ingredientStock->notification_status = IngredientStocksNotificaitonEnum::NOT_SEND;
-        $ingredientStock->notification_quantity = ($ingredientStock->total_quantity / 100) * IngredientStock::NOTIFICATION_PERSENTAGE;
     }
 
     /**
@@ -31,7 +30,6 @@ class IngredientStockObserver
         if ($ingredientStock->isDirty('total_quantity')) {
             $ingredientStock->remaining_quantity = $ingredientStock->total_quantity;
             $ingredientStock->notification_status = IngredientStocksNotificaitonEnum::NOT_SEND;
-            $ingredientStock->notification_quantity = ($ingredientStock->total_quantity / 100) * IngredientStock::NOTIFICATION_PERSENTAGE;
         }
     }
 

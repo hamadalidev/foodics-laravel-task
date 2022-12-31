@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\IngredientStock $ingredientStock
  *
  * @method static Builder|Ingredient missing()
  * @method static Builder|Ingredient newModelQuery()
@@ -33,7 +34,7 @@ class Ingredient extends Model
         'name',
     ];
 
-    public function ingredientStocks()
+    public function ingredientStock()
     {
         return $this->hasOne(IngredientStock::class);
     }
