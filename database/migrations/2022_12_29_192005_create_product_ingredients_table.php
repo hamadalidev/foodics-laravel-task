@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
+            $table->unsignedBigInteger('ingredient_id');
+            $table->foreign('ingredient_id')->references('id')->on('ingredients');
             $table->double('quantity')->comment('product consumed ingredient quantity. quantity in grams');
             $table->timestamps();
             $table->softDeletes();

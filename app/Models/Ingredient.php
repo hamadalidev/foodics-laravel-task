@@ -32,4 +32,9 @@ class Ingredient extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function ingredientStocks()
+    {
+        return $this->hasOne(IngredientStock::class);
+    }
 }

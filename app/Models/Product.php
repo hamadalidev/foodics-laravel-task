@@ -32,4 +32,9 @@ class Product extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function productIngredients()
+    {
+        return $this->hasMany(ProductIngredient::class);
+    }
 }

@@ -40,6 +40,8 @@ class IngredientStock extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const NOTIFICATION_PERSENTAGE = 50;
+
     protected $fillable = [
         'ingredient_id',
         'remaining_quantity',
