@@ -2,7 +2,10 @@
 
 namespace App\Observers;
 
+use App\Enums\IngredientStocksNotificaitonEnum;
+use App\Models\IngredientStock;
 use App\Models\OrderItem;
+use Illuminate\Support\Facades\Event as EventFacade;
 
 class OrderItemObserver
 {
@@ -16,11 +19,17 @@ class OrderItemObserver
     {
         $productIngredients = $orderItem->product->productIngredients;
         foreach ($productIngredients as $productIngredient) {
-            $productIngredientStock = $productIngredient->ingredient->ingredientStock;
+            $ingredient = $productIngredient->ingredient;
+            $productIngredientStock = $ingredient->ingredientStock;
             $productIngredientStock->remaining_quantity = $productIngredientStock->remaining_quantity - ($productIngredient->quantity * $orderItem->quantity);
             $productIngredientStock->save();
 
-            //todo check notificaiton quantity and send alter.
+            if ($productIngredientStock->notification_status == IngredientStocksNotificaitonEnum::NOT_SEND() &&
+                $productIngredientStock->remaining_quantity < ($productIngredientStock->total_quantity / 100) * IngredientStock::NOTIFICATION_PERSENTAGE) {
+                $productIngredientStock->notification_status = IngredientStocksNotificaitonEnum::SEND;
+                $productIngredientStock->save();
+                EventFacade::dispatch('stock.below.alert', [$ingredient->name]);
+            }
         }
     }
 
