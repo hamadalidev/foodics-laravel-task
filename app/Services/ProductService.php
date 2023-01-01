@@ -7,7 +7,7 @@ use App\Repositories\Product\ProductRepositoryInterface;
 use App\Services\Base\BaseService;
 use Illuminate\Support\Arr;
 
-class ProductService extends BaseService
+final class ProductService extends BaseService
 {
     private IngredientRepositoryInterface $ingredientRepository;
 

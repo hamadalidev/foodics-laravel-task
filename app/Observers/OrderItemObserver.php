@@ -7,7 +7,7 @@ use App\Models\IngredientStock;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Event as EventFacade;
 
-class OrderItemObserver
+final class OrderItemObserver
 {
     /**
      * Handle the OrderItem "created" event.

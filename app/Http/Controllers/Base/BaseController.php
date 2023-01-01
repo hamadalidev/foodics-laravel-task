@@ -15,16 +15,14 @@ abstract class BaseController extends Controller
     /**
      * @param $message
      * @param $data
-     * @param $code
      * @param $statusCode
      * @return JsonResponse
      */
-    protected function successResponse($message = null, $data = null, $code = 200, $statusCode = 200): JsonResponse
+    protected function successResponse($message = null, $data = null, $statusCode = 200): JsonResponse
     {
         return response()->json([
             'status' => 'Success',
             'message' => $message,
-            'code' => $code,
             'data' => $data,
         ], $statusCode);
     }
@@ -32,17 +30,15 @@ abstract class BaseController extends Controller
     /**
      * @param $message
      * @param $errors
-     * @param $code
      * @param $data
      * @param $statusCode
      * @return JsonResponse
      */
-    protected function errorResponse($message = null, $errors = null, $code = 200, $data = null, $statusCode = 200): JsonResponse
+    protected function errorResponse($message = null, $errors = null, $data = null, $statusCode = 200): JsonResponse
     {
         return response()->json([
             'status' => 'Error',
             'message' => $message,
-            'code' => $code,
             'data' => $data,
             'errors' => $errors,
         ], $statusCode);

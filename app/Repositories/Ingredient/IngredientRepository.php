@@ -7,7 +7,7 @@ use App\Repositories\Base\BaseRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class IngredientRepository extends BaseRepository implements IngredientRepositoryInterface
+final class IngredientRepository extends BaseRepository implements IngredientRepositoryInterface
 {
     /**
      * @param  Ingredient  $model

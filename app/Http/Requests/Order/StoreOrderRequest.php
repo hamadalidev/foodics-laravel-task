@@ -48,6 +48,8 @@ class StoreOrderRequest extends FormRequest
             return  true;
         }
         $orderIngredients = [];
+
+        // get all order product ingredients  to check order check validaiton.
         foreach ($this->products as $productOrder) {
             $product = $this->productRepository->find($productOrder['product_id']);
             if ($product) {

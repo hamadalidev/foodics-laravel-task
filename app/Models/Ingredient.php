@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -34,7 +35,10 @@ class Ingredient extends Model
         'name',
     ];
 
-    public function ingredientStock()
+    /**
+     * @return HasOne
+     */
+    public function ingredientStock(): HasOne
     {
         return $this->hasOne(IngredientStock::class);
     }

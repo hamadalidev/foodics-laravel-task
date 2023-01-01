@@ -6,7 +6,7 @@ use App\Models\Ingredient;
 use App\Models\Product;
 use App\Repositories\Base\BaseRepository;
 
-class ProductRepository extends BaseRepository implements ProductRepositoryInterface
+final class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
     /**
      * @param  Product  $model

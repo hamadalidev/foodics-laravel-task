@@ -5,7 +5,7 @@ namespace App\Mail\Stock;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 
-class StockAlertEmail extends Mailable
+final class StockAlertEmail extends Mailable
 {
     use Queueable;
 
