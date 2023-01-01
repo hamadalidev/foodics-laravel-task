@@ -31,5 +31,5 @@ return [
                 ['name' => 'Flour', 'quantity' => 1000],
             ],
         ],
-    ]
-    ];
+    ],
+];

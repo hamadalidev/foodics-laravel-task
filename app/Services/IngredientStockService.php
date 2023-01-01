@@ -8,20 +8,21 @@ use App\Services\Base\BaseService;
 
 class IngredientStockService extends BaseService
 {
-    private IngredientStockRepositoryInterface $repositories;
+    /**
+     * @param  IngredientStockRepositoryInterface  $repository
+     */
+    public function __construct(IngredientStockRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
-     * @param IngredientStockRepositoryInterface $repositories
+     * @param  IngredientStock  $ingredientStock
+     * @param $data
+     * @return void
      */
-    public function __construct(IngredientStockRepositoryInterface $repositories)
+    public function updateIngredientStock(IngredientStock $ingredientStock, $data): void
     {
-        $this->repositories = $repositories;
+        $this->repository->updateIngredientStock($ingredientStock, $data);
     }
-
-    public function updateIngredientStock(IngredientStock $ingredientStock, $data)
-    {
-        $ingredientStock->total_quantity = $ingredientStock->remaining_quantity + $data['total_quantity'];
-        $ingredientStock->save();
-    }
-
 }
