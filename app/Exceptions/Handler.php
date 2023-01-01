@@ -3,12 +3,9 @@
 namespace App\Exceptions;
 
 use Exception;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -71,22 +68,6 @@ class Handler extends ExceptionHandler
                 'errors' => $exception->errors(),
             ], 422);
         }
-
-//        if ($exception instanceof AuthenticationException) {
-//            return response()->json([
-//                'errors' => [
-//                    'message' => trans('exception.unauthenticated')
-//                ]
-//            ], 401);
-//        }
-//
-//        if ($exception instanceof AccessDeniedHttpException || $exception instanceof NotFoundHttpException) {
-//            return response()->json([
-//                'errors' => [
-//                    'message' => trans('exception.access_denied')
-//                ]
-//            ], 403);
-//        }
 
         return $this->prepareJsonResponse($request, $exception);
     }

@@ -22,8 +22,8 @@ final class OrderController extends BaseController
      */
     public function order(StoreOrderRequest $request): JsonResponse
     {
-        $this->orderService->saveOrder($request->validated());
+        $order = $this->orderService->saveOrder($request->validated());
 
-        return $this->successResponse('Order created successfully', []);
+        return $this->successResponse('Order created successfully', ['order_id' => $order->order_number], 200, 201);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Order;
 use App\Repositories\Order\OrderRepositoryInterface;
 use App\Services\Base\BaseService;
 
@@ -17,9 +18,9 @@ final class OrderService extends BaseService
 
     /**
      * @param $data
-     * @return true
+     * @return Order
      */
-    public function saveOrder($data): bool
+    public function saveOrder($data): Order
     {
         $orderItem = $data['products'];
         $order = $this->repository->create(['order_number' => time()]);
@@ -27,6 +28,6 @@ final class OrderService extends BaseService
             $this->repository->addOrderItem($order, $item);
         }
 
-        return true;
+        return $order;
     }
 }
