@@ -25,4 +25,18 @@ class IngredientStockService extends BaseService
     {
         $this->repository->updateIngredientStock($ingredientStock, $data);
     }
+
+    /**
+     * @param  array  $orderIngredients
+     * @return bool
+     */
+    public function isOrderIngredientStockAvailable(array $orderIngredients): bool
+    {
+        $whereConditions = [];
+        foreach ($orderIngredients as $key => $in) {
+            $whereConditions[] = [['remaining_quantity', '<', $in], ['ingredient_id',  $key]];
+        }
+
+        return $this->repository->isOrderIngredientStockAvailable($whereConditions);
+    }
 }

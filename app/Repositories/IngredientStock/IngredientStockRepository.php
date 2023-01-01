@@ -25,4 +25,18 @@ class IngredientStockRepository extends BaseRepository implements IngredientStoc
         $ingredientStock->total_quantity = $ingredientStock->remaining_quantity + $data['total_quantity'];
         $ingredientStock->save();
     }
+
+    /**
+     * @param  array  $whereConditions
+     * @return bool
+     */
+    public function isOrderIngredientStockAvailable(array $whereConditions): bool
+    {
+        $query = $this->model::query();
+        foreach ($whereConditions as $condition) {
+            $query->orWhere($condition);
+        }
+
+        return ! $query->exists();
+    }
 }

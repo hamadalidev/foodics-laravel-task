@@ -2,12 +2,23 @@
 
 namespace App\Http\Requests\Order;
 
-use App\Models\IngredientStock;
 use App\Models\Product;
+use App\Repositories\Product\ProductRepositoryInterface;
+use App\Services\IngredientStockService;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreOrderRequest extends FormRequest
 {
+    private ProductRepositoryInterface $productRepository;
+
+    /**
+     * @param  ProductRepositoryInterface  $productRepository
+     */
+    public function __construct(ProductRepositoryInterface $productRepository, private IngredientStockService $ingredientStockService)
+    {
+        $this->productRepository = $productRepository;
+    }
+
     public function rules()
     {
         return [
@@ -21,37 +32,36 @@ class StoreOrderRequest extends FormRequest
     {
         $validator->after(function ($validator) {
             if (! $this->validateOrderIngredient()) {
-                $validator->errors()->add('order_ingredient', trans('exception.invalid_ticket_type_sku_ids'));
+                $validator->errors()->add('order_ingredient', 'Ingredient Stock in not available for this order');
             }
         });
     }
 
-    private function validateOrderIngredient()
+    /**
+     * This function is use for check order product Ingredients stock is available or not
+     *
+     * @return bool
+     */
+    private function validateOrderIngredient(): bool
     {
-        $ingArray = [];
+        if (! $this->products) {
+            return  true;
+        }
+        $orderIngredients = [];
         foreach ($this->products as $productOrder) {
-            $product = Product::find($productOrder['product_id']);
+            $product = $this->productRepository->find($productOrder['product_id']);
             if ($product) {
-                $ing = $product->productIngredients;
-                foreach ($ing as $in) {
-                    if (! isset($ingArray[$in->ingredient_id])) {
-                        $ingArray[$in->ingredient_id] = $in->quantity * $productOrder['quantity'];
+                $productIngredients = $product->productIngredients;
+                foreach ($productIngredients as $productIngredient) {
+                    if (! isset($orderIngredients[$productIngredient->ingredient_id])) {
+                        $orderIngredients[$productIngredient->ingredient_id] = $productIngredient->quantity * $productOrder['quantity'];
                     } else {
-                        $ingArray[$in->ingredient_id] = $ingArray[$in->ingredient_id] + ($in->quantity * $productOrder['quantity']);
+                        $orderIngredients[$productIngredient->ingredient_id] = $orderIngredients[$productIngredient->ingredient_id] + ($productIngredient->quantity * $productOrder['quantity']);
                     }
                 }
             }
         }
 
-        foreach ($ingArray as $key => $in) {
-            $inarrrar[] = [['remaining_quantity', '<', $in], ['ingredient_id',  $key]];
-        }
-
-        $q = IngredientStock::query();
-        foreach ($inarrrar as $con) {
-            $q->orWhere($con);
-        }
-
-        return ! $q->exists();
+        return $this->ingredientStockService->isOrderIngredientStockAvailable($orderIngredients);
     }
 }

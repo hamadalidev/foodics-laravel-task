@@ -67,7 +67,7 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof ValidationException) {
             return response()->json([
-                'message' => trans('exception.validation'),
+                'message' => 'Validation Error',
                 'errors' => $exception->errors(),
             ], 422);
         }

@@ -14,4 +14,14 @@ final class OrderRepository extends BaseRepository implements OrderRepositoryInt
     {
         parent::__construct($model);
     }
+
+    /**
+     * @param  Order  $order
+     * @param  array  $item
+     * @return void
+     */
+    public function addOrderItem(Order $order, array $item): void
+    {
+        $order->orderItems()->create($item);
+    }
 }
