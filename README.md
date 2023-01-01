@@ -11,7 +11,7 @@
 - Observer design pattern.
 - Strategy design pattern
 
-##  Application architecture
+##  Application Architecture
 - Monolithic architecture
 - Implemented the SOLID principle for application architecture. Used final, abstract, interface for building application architecture
 
@@ -20,7 +20,7 @@
 - Larave psalm (./vendor/bin/psalm) https://drive.google.com/file/d/1rCYIrWbB4A0UIMJEzHH_siuRLKOLusf_/view?usp=share_link
 - Add php doc and return types.
 
-## Laravel feature used
+## Laravel Feature Used
 - Migration
 - Seeder
 - ORM
@@ -40,11 +40,11 @@
 Used mjml to design email UI.
 https://mjml.io/
 
-## Database Design
-- ERD https://drive.google.com/file/d/14xD7lpT2G9yvVKM8OWs6v0udmDmjS6D7/view?usp=share_link
-
 ## Requirment
 https://drive.google.com/file/d/1RF_m5n4afc29Rzl3qfKJ6i-bBRivqeIS/view?usp=share_link
+
+## Database Design
+- ERD https://drive.google.com/file/d/14xD7lpT2G9yvVKM8OWs6v0udmDmjS6D7/view?usp=share_link
 
 ### Database Use Cases
 - One Ingredient has one Ingredient Stock
@@ -86,10 +86,10 @@ php artisan test
 ```
 
 ## Order API.
-### url
+### URL
 http://127.0.0.1:8000/api/order
 
-## requrst payroll
+## Request Payroll
 {
     "products": [
         {
@@ -129,7 +129,7 @@ product ingredients stock need:
 - 30g Cheese
 - 20g Onion
 
-Result: Now cheez stock is not available we did not save the order.
+Result: Now Cheese stock is not available we did not save the order.
 
 ### PHP Unit Test
 I added three test case for order api.
