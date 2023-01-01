@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Ingredient;
+use App\Services\IngredientService;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\App;
 
 class IngredientSeeder extends Seeder
 {
@@ -15,30 +17,10 @@ class IngredientSeeder extends Seeder
      */
     public function run()
     {
-        $IngredientData = [
-            ['name' => 'Beef',
-                'stock' => ['new_stock' => 20000],
-            ],
-            ['name' => 'Cheese',
-                'stock' => ['new_stock' => 5000],
-            ],
-            ['name' => 'Onion',
-                'stock' => ['new_stock' => 1000],
-            ],
-            ['name' => 'Flour',
-                'stock' => ['new_stock' => 50000],
-            ],
-        ];
-
-        foreach ($IngredientData as $data) {
-            $ingredient = Ingredient::firstOrCreate(Arr::except($data, 'stock'));
-            if ($ingredient->ingredientStock) {
-                $ingredientStock = $ingredient->ingredientStock;
-                $ingredientStock->total_quantity = $ingredient->ingredientStock->remaining_quantity + $data['stock']['new_stock'];
-                $ingredientStock->save();
-            } else {
-                $ingredient->ingredientStock()->create(['total_quantity' => $data['stock']['new_stock']]);
-            }
+        $ingredientService = App::make(IngredientService::class);
+        $ingredients = config('constants.ingredients');
+        foreach ($ingredients as $data) {
+            $ingredientService->saveIngredientWithStock($data);
         }
     }
 }

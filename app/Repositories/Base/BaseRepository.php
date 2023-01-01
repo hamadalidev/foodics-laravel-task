@@ -66,4 +66,9 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         return $this->model->where('id', $id)->delete();
     }
+
+    public function firstOrCreate($data)
+    {
+        return $this->model->firstOrCreate($data);
+    }
 }
