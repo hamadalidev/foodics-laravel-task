@@ -1,7 +1,7 @@
 
 # Foodics Task
 
-## Tecnology
+## Technology
 - php 8.1.11
 - laravel 9
 - Mysql
@@ -17,7 +17,7 @@
 
 ## Code Quality
 - Laravel pint (./vendor/bin/pint)  https://drive.google.com/file/d/1KZJgiWIuKBhEYvq557qHdqmOhJqWk20l/view?usp=share_link
-- Larave psalm (./vendor/bin/psalm) https://drive.google.com/file/d/1rCYIrWbB4A0UIMJEzHH_siuRLKOLusf_/view?usp=share_link
+- Laravel psalm (./vendor/bin/psalm) https://drive.google.com/file/d/1rCYIrWbB4A0UIMJEzHH_siuRLKOLusf_/view?usp=share_link
 - Add php doc and return types.
 
 ## Laravel Feature Used
@@ -40,7 +40,7 @@
 Used mjml to design email UI.
 https://mjml.io/
 
-## Requirment
+## Requirement
 https://drive.google.com/file/d/1RF_m5n4afc29Rzl3qfKJ6i-bBRivqeIS/view?usp=share_link
 
 ## Database Design
@@ -50,7 +50,7 @@ https://drive.google.com/file/d/1RF_m5n4afc29Rzl3qfKJ6i-bBRivqeIS/view?usp=share
 - One Ingredient has one Ingredient Stock
 - One Product has many Ingredients
 - One Order has many Order Items
-- One Orer Item has one Product
+- One Order Item has one Product
 
 ## Demo video link
 
