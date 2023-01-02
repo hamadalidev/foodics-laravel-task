@@ -53,6 +53,8 @@ https://drive.google.com/file/d/1RF_m5n4afc29Rzl3qfKJ6i-bBRivqeIS/view?usp=share
 - One Order Item has one Product
 
 ## Demo video link
+https://drive.google.com/file/d/1o5uraHuTlXyU6J1xshwZo1TLBp6j0gx4/view?usp=share_link
+
 
 ## How to project setup
 ```bash
